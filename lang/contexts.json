@@ -1,0 +1,9 @@
+{
+  "L: %0/%1": "The current line shown in the editor toolbar, e.g. \"L: 3/16\". %0 is the number of the line with the cursor, %1 is the line limit.",
+  "L: %0": "The current line shown in the editor toolbar when there is no line limit, e.g. \"L: 3\".",
+  "W: %0": "The word count shown in the editor toolbar, e.g. \"W: 19\".",
+  "Char(s): %0": "The number of characters in the line with the cursor, shown in the editor toolbar, e.g. \"Char(s): 30\".",
+  "Words": "The tooltip of the word count in the editor toolbar.",
+  "Characters in the current line": "The tooltip of the character count in the editor toolbar.",
+  "Current line": "The tooltip of the current line number in the editor toolbar."
+}

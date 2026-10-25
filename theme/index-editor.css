@@ -1,0 +1,28 @@
+/*
+ * The counts shown in the toolbar by the `lineLimit` component.
+ * `margin-inline-start: auto` pushes the counter (and everything after it) to the end of the toolbar.
+ */
+.ck.ck-toolbar .ck.ck-line-limit-counter {
+	display: flex;
+	align-items: center;
+	margin-inline-start: auto;
+	padding: 0 var(--ck-spacing-small);
+	color: var(--ck-color-text);
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+	cursor: default;
+	user-select: none;
+}
+
+/*
+ * The space between "L: 5/16", "W: 19" and "Char(s): 30". Non-breaking spaces in a pseudo-element are used,
+ * because the toolbar resets the padding and margins of its content (`.ck-reset_all`).
+ */
+.ck.ck-toolbar .ck.ck-line-limit-counter > span + span::before {
+	content: "\00a0\00a0\00a0";
+}
+
+.ck.ck-toolbar .ck.ck-line-limit-counter.ck-line-limit-counter_full .ck-line-limit-counter__lines {
+	color: var(--ck-color-text-error);
+	font-weight: bold;
+}

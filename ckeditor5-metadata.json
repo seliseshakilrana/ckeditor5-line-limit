@@ -1,0 +1,17 @@
+{
+  "plugins": [
+    {
+      "name": "Line limit",
+      "className": "LineLimit",
+      "description": "Hard-wraps lines at a fixed number of characters, limits the number of lines and counts words, characters and lines.",
+      "path": "src/linelimit.ts",
+      "requires": [ "ShiftEnter" ],
+      "htmlOutput": [
+        {
+          "elements": "br",
+          "attributes": [ "data-auto-wrap" ]
+        }
+      ]
+    }
+  ]
+}

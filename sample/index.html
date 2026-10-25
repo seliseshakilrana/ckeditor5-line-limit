@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<link rel="icon" type="image/png" href="https://ckeditor.com/docs/ckeditor5/latest/assets/img/favicons/32x32.png"
+		sizes="32x32">
+	<meta charset="utf-8">
+	<title>CKEditor 5 – LineLimit demo</title>
+	<style>
+		body {
+			max-width: 800px;
+			margin: 20px auto;
+			font-family: system-ui, sans-serif;
+		}
+
+		/* A monospace font and a 40ch-wide editable make every wrapped line visible as a real line. */
+		.ck.ck-editor__editable_inline {
+			font-family: ui-monospace, Menlo, Consolas, monospace;
+			width: calc( 40ch + 2 * var( --ck-spacing-standard ) + 2px );
+		}
+
+		.ck-content p,
+		.ck-content h2,
+		.ck-content h3,
+		.ck-content h4,
+		.ck-content li {
+			margin: 0;
+		}
+
+		#status {
+			min-height: 1.4em;
+			color: #b00020;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>CKEditor 5 – LineLimit demo</h1>
+
+	<p>
+		This editor allows at most <strong>16 lines</strong> of <strong>40 characters</strong>. Long lines wrap
+		automatically and re-flow as you edit. <kbd>Enter</kbd> and typing are blocked at the limit, and pasted
+		content is trimmed.
+	</p>
+
+	<div id="editor">
+		<p>Type here. When a line gets longer than forty characters the last word moves to the next line.</p>
+		<p>Supercalifragilisticexpialidociouslylongwordsarecutatexactlyfortycharacters.</p>
+	</div>
+
+	<div id="status" role="status"></div>
+
+	<script type="module" src="./ckeditor.ts"></script>
+</body>
+
+</html>
