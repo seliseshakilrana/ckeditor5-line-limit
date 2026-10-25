@@ -1,6 +1,6 @@
 {
   "name": "@shakil.rana.selisegroup/ckeditor5-line-limit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A CKEditor 5 plugin that hard-wraps lines at a fixed number of characters, enforces a strict line limit and counts words, characters and lines.",
   "keywords": [
     "ckeditor",
