@@ -27,6 +27,14 @@
     "./package.json": "./package.json"
   },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seliseshakilrana/ckeditor5-line-limit.git"
+  },
+  "homepage": "https://github.com/seliseshakilrana/ckeditor5-line-limit#readme",
+  "bugs": {
+    "url": "https://github.com/seliseshakilrana/ckeditor5-line-limit/issues"
+  },
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=5.7.1"
