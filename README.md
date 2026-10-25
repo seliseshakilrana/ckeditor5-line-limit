@@ -189,6 +189,82 @@ export function CardEditor() {
 }
 ```
 
+### In Angular
+
+Use the official [`@ckeditor/ckeditor5-angular`](https://www.npmjs.com/package/@ckeditor/ckeditor5-angular) component:
+
+```bash
+npm install @ckeditor/ckeditor5-angular ckeditor5 @shakil.rana.selisegroup/ckeditor5-line-limit
+```
+
+Angular doesn't support importing CSS from TypeScript files, so add the styles globally instead. Either import them in `src/styles.css`:
+
+```css
+@import 'ckeditor5/ckeditor5.css';
+@import '@shakil.rana.selisegroup/ckeditor5-line-limit/index.css';
+```
+
+Or list them in the `styles` array of `angular.json`:
+
+```json
+"styles": [
+	"node_modules/ckeditor5/dist/ckeditor5.css",
+	"node_modules/@shakil.rana.selisegroup/ckeditor5-line-limit/dist/index.css",
+	"src/styles.css"
+]
+```
+
+Then use the plugin in a component:
+
+```ts
+import { Component, NgZone, inject, signal } from '@angular/core';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { ClassicEditor, Essentials, Paragraph, type EditorConfig } from 'ckeditor5';
+import { LineLimit } from '@shakil.rana.selisegroup/ckeditor5-line-limit';
+
+@Component( {
+	selector: 'app-card-editor',
+	standalone: true,
+	imports: [ CKEditorModule ],
+	template: `
+		<ckeditor [editor]="Editor" [config]="config" />
+		<p>{{ lines() }} / 16 lines</p>
+	`
+} )
+export class CardEditorComponent {
+	private readonly zone = inject( NgZone );
+
+	readonly Editor = ClassicEditor;
+	readonly lines = signal( 0 );
+
+	readonly config: EditorConfig = {
+		licenseKey: 'GPL',
+		plugins: [ Essentials, Paragraph, LineLimit ],
+		toolbar: [ 'undo', 'redo', '|', 'lineLimit' ],
+		lineLimit: {
+			maxLines: 16,
+			charsPerLine: 40,
+			// The Angular component runs the editor outside of the Angular zone,
+			// so re-enter it to make sure the view is updated.
+			onUpdate: ( { lineCount } ) => this.zone.run( () => this.lines.set( lineCount ) )
+		}
+	};
+}
+```
+
+To get the plugin instance (for its properties and events), handle the `ready` output:
+
+```ts
+// Template: <ckeditor [editor]="Editor" [config]="config" (ready)="onReady( $event )" />
+onReady( editor: ClassicEditor ): void {
+	const lineLimit = editor.plugins.get( 'LineLimit' );
+
+	lineLimit.on( 'limitReached', () => {
+		this.zone.run( () => { /* e.g. show a message */ } );
+	} );
+}
+```
+
 ## How it works
 
 ### Model and data
